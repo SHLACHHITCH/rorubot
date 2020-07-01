@@ -28,4 +28,5 @@ async def status(ctx):
 
 token = os.environ.get('BOT_TOKEN')
 
-Bot.run(str(token))
+try: Bot.run(TOKEN)
+except Exception as e: print(e)
