@@ -6,7 +6,7 @@ from steam import game_servers
 from steam import game_servers as gs
 import os
 
-TOKEN = 'NzI3NTEyMDIzNzIxNTc0NDAx.XvtMpA.gm7FAeusoe8WXlusDzeT3sR4eZw'
+
 
 Bot = commands.Bot(command_prefix= "!")
 
