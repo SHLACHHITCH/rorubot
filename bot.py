@@ -37,16 +37,14 @@ WELCOME_IMAGE = "ro2.jpg"
 
 WELCOME_CHANNEL = None
 
-client = discord.Client()
-
-@client.event
+@Bot.event
 async def on_ready():
-    await client.change_presence(activity=discord.Activity(name='Welcome to Yong Army', type=discord.ActivityType.watching))
+    await Bot.change_presence(activity=discord.Activity(name='Welcome to Yong Army', type=discord.ActivityType.watching))
     print('Хэй, я уже в сети!\n1.1.0 (by shardeex, 2020)')
 
-@client.event
+@Bot.event
 async def on_member_join(member):
-    channel = client.get_channel(WELCOME_CHANNEL_ID)
+    channel = Bot.get_channel(WELCOME_CHANNEL_ID)
     ext = WELCOME_IMAGE.split('.')[-1]  # Расширение файла
     file = discord.File(WELCOME_IMAGE, filename=f"image.{ext}")
 
@@ -59,8 +57,6 @@ async def on_member_join(member):
         await channel.send(file=file, embed=embed)
     except discord.errors.Forbidden as e:
         print(f'Произошла ошибка при отправке сообщения: {e}')
-
-
 
 token = os.environ.get('BOT_TOKEN')
 
