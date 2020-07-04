@@ -10,6 +10,7 @@ import os
 
 Bot = commands.Bot(command_prefix= "!")
 
+#/////////////////////////////// server status ///////////////////////#
 
 @Bot.command()    ## Инициируем команду боту
 async def status(ctx):
@@ -25,6 +26,41 @@ async def status(ctx):
     emb.add_field(name='Карта:', value=info_map) ## Информация по карте и остальному
     emb.add_field(name='Игроки:', value=info_players)
     await ctx.send(embed=emb)
+
+
+#/////////////////////////////// server welcomer ///////////////////////#
+
+WELCOME_CHANNEL_ID = 728512405667315752
+WELCOME_TITLE = "Welcome To {member.guild.name},{member.name} || Добро пожаловать {member.name},в {member.guild.name}"
+WELCOME_DESCRIPTION = "For all technical questions, please contact bubb1e and Tony Montana || По всем техническим вопросам просьба обращаться к bubb1e and Tony Montana"
+WELCOME_IMAGE = "ro2.jpg"
+
+WELCOME_CHANNEL = None
+
+client = discord.Client()
+
+@client.event
+async def on_ready():
+    await client.change_presence(activity=discord.Activity(name='Welcome to Yong Army', type=discord.ActivityType.watching))
+    print('Хэй, я уже в сети!\n1.1.0 (by shardeex, 2020)')
+
+@client.event
+async def on_member_join(member):
+    channel = client.get_channel(WELCOME_CHANNEL_ID)
+    ext = WELCOME_IMAGE.split('.')[-1]  # Расширение файла
+    file = discord.File(WELCOME_IMAGE, filename=f"image.{ext}")
+
+    embed = discord.Embed(
+        title=WELCOME_TITLE.format(member=member),
+        description=WELCOME_DESCRIPTION.format(member=member),
+        ).set_image(url=f"attachment://image.{ext}")
+
+    try:
+        await channel.send(file=file, embed=embed)
+    except discord.errors.Forbidden as e:
+        print(f'Произошла ошибка при отправке сообщения: {e}')
+
+
 
 token = os.environ.get('BOT_TOKEN')
 
