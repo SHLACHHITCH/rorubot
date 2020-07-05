@@ -26,7 +26,12 @@ async def status(ctx):
     emb.add_field(name='Карта:', value=info_map) ## Информация по карте и остальному
     emb.add_field(name='Игроки:', value=info_players)
     await ctx.send(embed=emb)
+#/////////////////////////////// role giver ///////////////////////#
 
+@Bot.event
+async def on_member_join(member):
+    role=discord.utils.get(member.server.roles,name='Veterans')
+    await Bot.add_roles(member,role)
 
 #/////////////////////////////// server welcomer ///////////////////////#
 
