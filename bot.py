@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
+from discord.utils import get
 import steam
 from steam import game_servers
 from steam import game_servers as gs
@@ -28,7 +29,7 @@ async def status(ctx):
     await ctx.send(embed=emb)
 #/////////////////////////////// role giver ///////////////////////#
 
-bot.event
+@Bot.event
 async def on_member_join(member):
     role = get(member.guild.roles, name=Veterans)
     await member.add_roles(Veterans)
