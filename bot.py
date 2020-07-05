@@ -29,11 +29,10 @@ async def status(ctx):
     await ctx.send(embed=emb)
 #/////////////////////////////// role giver ///////////////////////#
 
-@Bot.event
-async def on_member_join(member):
-    role = get(member.guild.roles, name=Veterans)
-    await member.add_roles(Veterans)
-    print(f"{member} was given {Veterans}")
+@Bot.event 
+async def on_member_join(ctx):
+    role = discord.utils.get(ctx.guild.roles, name = "{Veterans}") 
+    await ctx.add_roles(role)
 
 #/////////////////////////////// server welcomer ///////////////////////#
 
