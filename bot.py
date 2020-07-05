@@ -31,7 +31,7 @@ async def status(ctx):
 
 @Bot.event 
 async def on_member_join(ctx):
-    role = discord.utils.get(ctx.guild.roles, name = "{Veterans}") 
+    role = discord.utils.get(ctx.guild.roles, name = "{719459081492103218}") 
     await ctx.add_roles(role)
 
 #/////////////////////////////// server welcomer ///////////////////////#
