@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
+from discord import utils
 from discord.utils import get
 import steam
 from steam import game_servers
@@ -31,7 +32,7 @@ async def status(ctx):
 
 @Bot.event
 async def on_member_join(member):
-    role = discord.utils.get(member.server.roles, id=<719459081492103218>)
+    role = discord.utils.get(member.server.roles, id=719459081492103218)
     await bot.add_roles(member, role)
 
 #/////////////////////////////// server welcomer ///////////////////////#
