@@ -72,9 +72,8 @@ async def status(ctx):
 
 # WELCOME MESSAGE & ROLE GIVE
 
-bubb1e_id, tony_id = 277060142879604737, 500705347766321153
-WELCOME_TITLE = ":flag_gb: Welcome to Discord server {member.guild.name}, {member.name}\n:flag_ru: Добро пожаловать на Discord сервер {member.guild.name}, {member.name}"
-WELCOME_DESCRIPTION = ":flag_gb: {member.mention}, for technical issues please contact {member.guild.get_user(bubble_id).mention} or {member.guild.get_user(tony_id).mention}\n:flag_ru: {member.mention}, по техническим вопросам просьба обращаться к {member.guild.get_user(bubble_id).mention} или {member.guild.get_user(tony_id).mention}"  # and maybe shardeex..?
+WELCOME_TITLE = ":flag_gb: Welcome to Discord server {member.guild.name}\n:flag_ru: Добро пожаловать на Discord сервер {member.guild.name}"
+WELCOME_DESCRIPTION = ":flag_gb: For technical issues please contact {bubb1e} or {tony}\n:flag_ru: По техническим вопросам просьба обращаться к {bubb1e} или {tony}"  # and maybe shardeex..?
 WELCOME_IMAGE = "ro2.jpg"
 
 WELCOME_CHANNEL_ID = 728512405667315752
@@ -87,12 +86,23 @@ async def on_member_join(member):
     ext = WELCOME_IMAGE.split(".")[-1]  # Расширение файла
     file = discord.File(WELCOME_IMAGE, filename=f"image.{ext}")
 
+    # I know I should rewrite this
+    b_id, t_id = 277060142879604737, 500705347766321153
+    try:
+        bubb1e = member.guild.get_member(b_id).mention
+        tony = member.guild.get_member(t_id).mention
+    except AttributeError:
+        bubb1e = await Bot.fetch_user(b_id)
+        bubb1e = bubb1e.name
+        tony = await Bot.fetch_user(t_id)
+        tony = tony.name
+
     embed = discord.Embed(
-        title=WELCOME_TITLE.format(member=member), description=WELCOME_DESCRIPTION.format(member=member),
+        title=WELCOME_TITLE.format(member=member), description=WELCOME_DESCRIPTION.format(member=member, bubb1e=bubb1e, tony=tony),
     ).set_image(url=f"attachment://image.{ext}")
 
     try:
-        await channel.send(file=file, embed=embed)
+        await channel.send(f'Привет, {member.mention}!', file=file, embed=embed)
     except discord.errors.Forbidden as e:
         print(f"Произошла ошибка при отправке сообщения: {e}")
 
@@ -111,6 +121,4 @@ async def on_member_join(member):
 async def on_ready():
     print("logged in.")
 
-
-TOKEN = os.environ.get("BOT_TOKEN")
-Bot.run(TOKEN)
+Bot.run(os.environ.get("BOT_TOKEN"))
