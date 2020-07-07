@@ -74,7 +74,7 @@ async def status(ctx):
 
 bubb1e_mention, tony_mention = "<@277060142879604737>", "<@500705347766321153>"
 WELCOME_TITLE = ":flag_gb: Welcome to {member.guild.name} Discord server, {member.name}\n:flag_ru: Добро пожаловать на Discord сервер {member.guild.name}, {member.name}"
-WELCOME_DESCRIPTION = f":flag_gb: For technical issues please contact {bubb1e_mention} or {tony_mention}\n:flag_ru: По техническим вопросам просьба обращаться к {bubb1e_mention} or {tony_mention}"  # and maybe shardeex..?
+WELCOME_DESCRIPTION = f":flag_gb: For technical issues please contact {bubb1e_mention} or {tony_mention}\n:flag_ru: По техническим вопросам просьба обращаться к {bubb1e_mention} или {tony_mention}"  # and maybe shardeex..?
 WELCOME_IMAGE = "ro2.jpg"
 
 WELCOME_CHANNEL_ID = 728512405667315752
