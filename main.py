@@ -73,8 +73,8 @@ async def status(ctx):
 # WELCOME MESSAGE & ROLE GIVE
 
 bubb1e_id, tony_id = 277060142879604737, 500705347766321153
-WELCOME_TITLE = ":flag_gb: Welcome to Discord server {member.guild.name}, {member.mention}\n:flag_ru: Добро пожаловать на Discord сервер {member.guild.name}, {member.mention}"
-WELCOME_DESCRIPTION = ":flag_gb: For technical issues please contact {member.guild.get_user(bubble_id).mention} or {member.guild.get_user(tony_id).mention}\n:flag_ru: По техническим вопросам просьба обращаться к {member.guild.get_user(bubble_id).mention} или {member.guild.get_user(tony_id).mention}"  # and maybe shardeex..?
+WELCOME_TITLE = ":flag_gb: Welcome to Discord server {member.guild.name}, {member.name}\n:flag_ru: Добро пожаловать на Discord сервер {member.guild.name}, {member.name}"
+WELCOME_DESCRIPTION = ":flag_gb: {member.mention}, for technical issues please contact {member.guild.get_user(bubble_id).mention} or {member.guild.get_user(tony_id).mention}\n:flag_ru: {member.mention}, по техническим вопросам просьба обращаться к {member.guild.get_user(bubble_id).mention} или {member.guild.get_user(tony_id).mention}"  # and maybe shardeex..?
 WELCOME_IMAGE = "ro2.jpg"
 
 WELCOME_CHANNEL_ID = 728512405667315752
@@ -88,7 +88,7 @@ async def on_member_join(member):
     file = discord.File(WELCOME_IMAGE, filename=f"image.{ext}")
 
     embed = discord.Embed(
-        title=WELCOME_TITLE.format(member=member), description=WELCOME_DESCRIPTION,
+        title=WELCOME_TITLE.format(member=member), description=WELCOME_DESCRIPTION.format(member=member),
     ).set_image(url=f"attachment://image.{ext}")
 
     try:
