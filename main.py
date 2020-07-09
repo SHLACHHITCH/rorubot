@@ -12,6 +12,31 @@ Bot = commands.Bot(
 # SERVER STATUS
 
 ADDR = r"\gameaddr\37.230.228.193:7778"
+MAPS = (
+    "TE-BakovkaB9",
+    "TE-Bridges_of_Druzhina_MCP",
+    "TE-Barracks",
+    "TE-Coldsteel_MCP",
+    "TE-Spartanovka",
+    "TE-MyshkovaRiver_MCP",
+    "TE-Station",
+    "TE-PavlovsHouse",
+    "TE-MamayevKurgan",
+    "TE-Stalingradkessel_MCP",
+    "TE-Butovo-B14",
+    "TE-RedOctoberFactory",
+    "TE-DerIwanBerg",
+    "TE-Odessa-V7",
+    "TE-CommissarsHouse",
+    "TE-Apartments",
+    "TE-Rakowice_MCP",
+    "TE-GrainElevator",
+    "TE-Zhytomir-B4",
+    "TE-Univermag-B10",
+    "TE-Red_Assault_Final",
+    "TE-Kaukasus-V8",
+    "TE-Tulaoutskirts_MCP",
+)
 
 
 @Bot.command()
@@ -29,6 +54,11 @@ async def статус(ctx):
                     "name": "Игроки:",
                     "value": f"{info['players']}/{info['max_players']}",
                     "inline": True,
+                },
+                {
+                    "name": "Следующая карта:",
+                    "value": MAPS[1 + MAPS.index(info["map"])],
+                    "inline": False,
                 },
             ],
         }
@@ -57,6 +87,11 @@ async def status(ctx):
                     "name": "Players:",
                     "value": f"{info['players']}/{info['max_players']}",
                     "inline": True,
+                },
+                {
+                    "name": "Next map:",
+                    "value": MAPS[1 + MAPS.index(info["map"])],
+                    "inline": False,
                 },
             ],
         }
@@ -98,11 +133,12 @@ async def on_member_join(member):
         tony = tony.name
 
     embed = discord.Embed(
-        title=WELCOME_TITLE.format(member=member), description=WELCOME_DESCRIPTION.format(member=member, bubb1e=bubb1e, tony=tony),
+        title=WELCOME_TITLE.format(member=member),
+        description=WELCOME_DESCRIPTION.format(member=member, bubb1e=bubb1e, tony=tony),
     ).set_image(url=f"attachment://image.{ext}")
 
     try:
-        await channel.send(f'Привет, {member.mention}!', file=file, embed=embed)
+        await channel.send(f"Привет, {member.mention}!", file=file, embed=embed)
     except discord.errors.Forbidden as e:
         print(f"Произошла ошибка при отправке сообщения: {e}")
 
