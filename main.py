@@ -38,6 +38,74 @@ MAPS = (
     "TE-Tulaoutskirts_MCP",
 )
 
+COLORS = (
+    15158332,
+    15159868,
+    15095867,
+    15097403,
+    15098939,
+    15034938,
+    15036218,
+    15037754,
+    14973754,
+    14975289,
+    14976825,
+    14912825,
+    14914360,
+    14915896,
+    14851896,
+    14853431,
+    14854711,
+    14790711,
+    14792247,
+    14793782,
+    14729782,
+    14731318,
+    14667317,
+    14668597,
+    14670133,
+    14605877,
+    14147124,
+    13753908,
+    13294900,
+    12901683,
+    12442931,
+    12049459,
+    11590707,
+    11197234,
+    10738482,
+    10345266,
+    9886258,
+    9493041,
+    9034289,
+    8640817,
+    8182065,
+    7788592,
+    7329840,
+    6936624,
+    6543152,
+    6084399,
+    5690927,
+    5232175,
+    4838959,
+    4445486,
+    3986734,
+    3593262,
+    3200046,
+    3003441,
+    3003191,
+    3003197,
+    3002947,
+    3002953,
+    3002703,
+    3002453,
+    3002202,
+    3001952,
+    3067494,
+    3067243,
+    3066993,
+)
+
 
 @Bot.command()
 async def статус(ctx):
@@ -47,7 +115,7 @@ async def статус(ctx):
             raise RuntimeError
 
         embed_dict = {
-            "title": "Статус сервера",
+            "title": f'Статус __{info["name"]}__',
             "fields": [
                 {"name": "Карта:", "value": info["map"], "inline": True},
                 {
@@ -61,6 +129,7 @@ async def статус(ctx):
                     "inline": False,
                 },
             ],
+            "color": COLORS[min(info["players"], 64)],  # 64 is max players
         }
     except RuntimeError:
         embed_dict = {
@@ -80,7 +149,7 @@ async def status(ctx):
             raise RuntimeError
 
         embed_dict = {
-            "title": "Server status",
+            "title": f'Status of __{info["name"]}__ ',
             "fields": [
                 {"name": "Map:", "value": info["map"], "inline": True},
                 {
@@ -94,6 +163,7 @@ async def status(ctx):
                     "inline": False,
                 },
             ],
+            "color": COLORS[min(info["players"], 64)],  # 64 is max players
         }
     except RuntimeError:
         embed_dict = {
@@ -108,7 +178,7 @@ async def status(ctx):
 # WELCOME MESSAGE & ROLE GIVE
 
 WELCOME_TITLE = ":flag_gb: Welcome to Discord server {member.guild.name}\n:flag_ru: Добро пожаловать на Discord сервер {member.guild.name}"
-WELCOME_DESCRIPTION = ":flag_gb: For technical issues please contact {bubb1e} or {tony}\n:flag_ru: По техническим вопросам просьба обращаться к {bubb1e} или {tony}"  # and maybe shardeex..?
+WELCOME_DESCRIPTION = ":flag_gb: There is a bot on our server that will help you find out the current and next map.\nFor technical issues please contact {bubb1e} or {tony}\n:flag_ru: На нашем сервере работает бот, который поможет Вам узнать текущую и следующую карту.\nПо техническим вопросам просьба обращаться к {bubb1e} или {tony}"  # and maybe shardeex..?
 WELCOME_IMAGE = "ro2.jpg"
 
 WELCOME_CHANNEL_ID = 728512405667315752
@@ -156,5 +226,6 @@ async def on_member_join(member):
 @Bot.event
 async def on_ready():
     print("logged in.")
+
 
 Bot.run(os.environ.get("BOT_TOKEN"))
