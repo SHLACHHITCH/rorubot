@@ -36,6 +36,7 @@ MAPS = (
     "TE-Univermag-B10",
     "TE-Kaukasus-V8",
     "TE-Tulaoutskirts_MCP",
+    "TE-BakovkaB9",
 )
 
 COLORS = (
@@ -107,7 +108,7 @@ COLORS = (
 )
 
 
-@Bot.command()
+@Bot.command(aliases=['с'])
 async def статус(ctx):
     try:
         server = next(gs.query_master(ADDR))
@@ -140,74 +141,8 @@ async def статус(ctx):
         embed = discord.Embed().from_dict(embed_dict)
         await ctx.channel.send(embed=embed)
 
-@Bot.command()
-async def с(ctx):
-    try:
-        server = next(gs.query_master(ADDR))
-        if not (info := gs.a2s_info(server)):
-            raise RuntimeError
-
-        embed_dict = {
-            "title": f'Статус __{info["name"]}__',
-            "fields": [
-                {"name": "Карта:", "value": info["map"], "inline": True},
-                {
-                    "name": "Игроки:",
-                    "value": f"{info['players']}/{info['max_players']}",
-                    "inline": True,
-                },
-                {
-                    "name": "Следующая карта:",
-                    "value": MAPS[1 + MAPS.index(info["map"])],
-                    "inline": False,
-                },
-            ],
-            "color": COLORS[min(info["players"], 64)],  # 64 is max players
-        }
-    except RuntimeError:
-        embed_dict = {
-            "title": "Произошла ошибка при получении данных о сервере",
-            "description": "Пожалуйста, попробуйте ещё раз позднее.",
-        }
-    finally:
-        embed = discord.Embed().from_dict(embed_dict)
-        await ctx.channel.send(embed=embed)
-
-@Bot.command()
+@Bot.command(aliases=['s'])
 async def status(ctx):
-    try:
-        server = next(gs.query_master(ADDR))
-        if not (info := gs.a2s_info(server)):
-            raise RuntimeError
-
-        embed_dict = {
-            "title": f'Status of __{info["name"]}__ ',
-            "fields": [
-                {"name": "Map:", "value": info["map"], "inline": True},
-                {
-                    "name": "Players:",
-                    "value": f"{info['players']}/{info['max_players']}",
-                    "inline": True,
-                },
-                {
-                    "name": "Next map:",
-                    "value": MAPS[1 + MAPS.index(info["map"])],
-                    "inline": False,
-                },
-            ],
-            "color": COLORS[min(info["players"], 64)],  # 64 is max players
-        }
-    except RuntimeError:
-        embed_dict = {
-            "title": "An error occurred while retrieving server information",
-            "description": "Please try again later.",
-        }
-    finally:
-        embed = discord.Embed().from_dict(embed_dict)
-        await ctx.channel.send(embed=embed)
-
-@Bot.command()
-async def s(ctx):
     try:
         server = next(gs.query_master(ADDR))
         if not (info := gs.a2s_info(server)):
