@@ -141,7 +141,7 @@ async def статус(ctx):
         await ctx.channel.send(embed=embed)
 
 @Bot.command()
-async def c(ctx):
+async def с(ctx):
     try:
         server = next(gs.query_master(ADDR))
         if not (info := gs.a2s_info(server)):
