@@ -14,29 +14,38 @@ Bot = commands.Bot(
 ADDR = r"\gameaddr\37.230.228.193:7778"
 MAPS = (
     "TE-BakovkaB9",
-    "TE-Odessa-V7",
     "TE-Bridges_of_Druzhina_MCP",
-    "TE-Barracks",
     "TE-Coldsteel_MCP",
     "TE-Spartanovka",
     "TE-MyshkovaRiver_MCP",
     "TE-Stalingradkessel_MCP",
-    "TE-MamayevKurgan",
-    "TE-PavlovsHouse",
-    "TE-Station",
     "TE-Butovo-B14",
+    "TE-Barracks",
     "TE-RedOctoberFactory",
-    "TE-DerIwanBerg",
-    "TE-CommissarsHouse",
-    "TE-Apartments",
-    "TE-Rakowice_MCP",
-    "TE-Red_Assault_Final",
+    "TE-Racowice_MCP",
     "TE-GrainElevator",
-    "TE-Zhytomir-B4",
+    "TE-PavlovsHouse",
+    "TE-Apartments",
+    "TE-Station",
+    "TE-CommissarsHouse",
+    "TE-DerIwanBerg",
     "TE-Univermag-B10",
     "TE-Kaukasus-V8",
+    "TE-Zhytomir-B4",
     "TE-Tulaoutskirts_MCP",
-    "TE-BakovkaB9",
+    "TE-Winterwald_MCP",
+    "TE-MamayevKurgan",
+)
+    
+    
+    
+    
+    
+    
+    
+    
+   
+    
 )
 
 COLORS = (
