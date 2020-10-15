@@ -174,53 +174,6 @@ async def status(ctx):
         embed = discord.Embed().from_dict(embed_dict)
         await ctx.channel.send(embed=embed)
 
-# WELCOME MESSAGE & ROLE GIVE
-
-WELCOME_TITLE = ":flag_gb: Welcome to Discord server {member.guild.name}\n:flag_ru: Добро пожаловать на Discord сервер {member.guild.name}"
-WELCOME_DESCRIPTION = ":flag_gb: There is a bot on our server that will help you find out the current and next map.\nFor technical issues please contact {bubb1e} or {tony}\n:flag_ru: На нашем сервере работает бот, который поможет Вам узнать текущую и следующую карту.\nПо техническим вопросам просьба обращаться к {bubb1e} или {tony}"  # and maybe shardeex..?
-WELCOME_IMAGE = "ro2.jpg"
-
-WELCOME_CHANNEL_ID = 728512405667315752
-ROLE_ID = 719459081492103218
-
-
-@Bot.event
-async def on_member_join(member):
-    channel = Bot.get_channel(WELCOME_CHANNEL_ID)
-    ext = WELCOME_IMAGE.split(".")[-1]  # Расширение файла
-    file = discord.File(WELCOME_IMAGE, filename=f"image.{ext}")
-
-    # I know I should rewrite this
-    b_id, t_id = 277060142879604737, 500705347766321153
-    try:
-        bubb1e = member.guild.get_member(b_id).mention
-        tony = member.guild.get_member(t_id).mention
-    except AttributeError:
-        bubb1e = await Bot.fetch_user(b_id)
-        bubb1e = bubb1e.name
-        tony = await Bot.fetch_user(t_id)
-        tony = tony.name
-
-    embed = discord.Embed(
-        title=WELCOME_TITLE.format(member=member),
-        description=WELCOME_DESCRIPTION.format(member=member, bubb1e=bubb1e, tony=tony),
-    ).set_image(url=f"attachment://image.{ext}")
-
-    try:
-        await channel.send(f"Привет, {member.mention}!", file=file, embed=embed)
-    except discord.errors.Forbidden as e:
-        print(f"Произошла ошибка при отправке сообщения: {e}")
-
-    if (role := member.guild.get_role(ROLE_ID)) :
-        await member.add_roles(role)
-    else:
-        try:
-            await member.send(
-                f":flag_gb: Unfortunately, I could not give you a role on the server {member.guild.name}, because I could not find it.\n:flag_ru: К сожалению, мне не удалось выдать вам роль на сервере {member.guild.name}, так как я не смог её найти."
-            )
-        except discord.Forbidden:
-            pass  # maybe I should tell bubb1e about this...
-
 
 @Bot.event
 async def on_ready():
