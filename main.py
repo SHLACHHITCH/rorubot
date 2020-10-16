@@ -34,7 +34,7 @@ MAPS = (
     "TE-Zhytomir-B4",
     "TE-Tulaoutskirts_MCP",
     "TE-Winterwald_MCP",
-    "TE-MamayevKurgan",
+    "TE-MamayevKurgan"
 )
     
     
