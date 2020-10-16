@@ -35,8 +35,8 @@ MAPS = (
     "TE-Tulaoutskirts_MCP",
     "TE-Winterwald_MCP",
     "TE-MamayevKurgan",
-)
-    
+
+
     
     
     
@@ -46,7 +46,7 @@ MAPS = (
     
    
     
-
+)
 
 COLORS = (
     15158332,
