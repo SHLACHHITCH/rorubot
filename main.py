@@ -6,7 +6,7 @@ from discord.ext import commands
 from steam import game_servers as gs
 
 Bot = commands.Bot(
-    command_prefix="!", activity=discord.Game(name="Welcome to Yong Army")
+    command_prefix="!", activity=discord.Game(name="RORU DISCORD BOT")
 )
 
 # SERVER STATUS
@@ -133,11 +133,7 @@ async def статус(ctx):
                     "value": f"{info['players']}/{info['max_players']}",
                     "inline": True,
                 },
-                {
-                    "name": "Следующая карта:",
-                    "value": MAPS[1 + MAPS.index(info["map"])],
-                    "inline": False,
-                },
+              
             ],
             "color": COLORS[min(info["players"], 64)],  # 64 is max players
         }
@@ -166,11 +162,7 @@ async def status(ctx):
                     "value": f"{info['players']}/{info['max_players']}",
                     "inline": True,
                 },
-                {
-                    "name": "Next map:",
-                    "value": MAPS[1 + MAPS.index(info["map"])],
-                    "inline": False,
-                },
+               
             ],
             "color": COLORS[min(info["players"], 64)],  # 64 is max players
         }
